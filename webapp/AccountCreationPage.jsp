@@ -137,7 +137,7 @@ body {
 <div>
     <button class="btn btn-primary mt-0" id="backToHomeButton" 
         style="width: auto; padding: 0.5rem 1.5rem;" 
-        onclick="window.location.href='CustomerDashboard.jsp'">
+        onclick="window.location.href='CustomerDashboardController'">
         BACK TO HOME PAGE
     </button>
 </div>

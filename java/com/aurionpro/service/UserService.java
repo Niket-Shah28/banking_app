@@ -1,5 +1,7 @@
 package com.aurionpro.service;
 
+import java.util.List;
+
 import com.aurionpro.dao.UserDao;
 import com.aurionpro.model.Customer;
 
@@ -16,11 +18,15 @@ public class UserService {
 		return userService;
 	}
 	
-	public boolean login(int userId, String password, String role) {
+	public String login(int userId, String password, String role) {
 		return userDao.login(userId, password, role);
 	}
 	
 	public boolean registerCustomer(Customer customer) {
 		return userDao.registerCustomer(customer);
+	}
+	
+	public List<Customer> getAllCustomerDetails() {
+		return userDao.getAllCustomerDetails();
 	}
 }

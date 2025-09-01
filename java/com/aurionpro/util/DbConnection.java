@@ -16,13 +16,11 @@ public class DbConnection {
 			try {
 				Class.forName("com.mysql.cj.jdbc.Driver");
 				
-				connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/banking_app", "", "");
+				connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/banking_app", "root", "Tekin@3002");
 				System.out.println("Connection Successful !!");
 			} catch (ClassNotFoundException e) {
-				System.out.println("2");
 				e.printStackTrace();
 			} catch (SQLException e) {
-				System.out.println("3");
 				e.printStackTrace();
 			}
 		}

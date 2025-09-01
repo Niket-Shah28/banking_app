@@ -9,6 +9,7 @@ public class Account {
 	private int branchId;
 	private String branchName;
 	private String ifscCode;
+	private String customerName;
 	
 	public Account(int accountId, int customerId, String accountNumber, String accountType, double balance, int branchId,
 			String branchName, String ifscCode) {
@@ -54,7 +55,22 @@ public class Account {
 		this.branchName = branchName;
 		this.ifscCode = ifscCode;
 	}
+	
+	public Account(int customerId, String accountNumber, String accountType, double balance, String branchName,
+			String ifscCode, String customerName) {
+		super();
+		this.customerId = customerId;
+		this.accountNumber = accountNumber;
+		this.accountType = accountType;
+		this.balance = balance;
+		this.branchName = branchName;
+		this.ifscCode = ifscCode;
+		this.customerName = customerName;
+	}
 
+	public String getCustomerName() {
+		return customerName;
+	}
 	public int getCustomerId() {
 		return customerId;
 	}

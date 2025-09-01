@@ -146,7 +146,7 @@
 <body>
 <button class="btn btn-primary mb-3"
         style="display:inline-block; width:auto; padding:0.5rem 1.5rem;"
-        onclick="window.location.href='CustomerDashboard.jsp'">
+        onclick="window.location.href='CustomerDashboardController'">
     BACK TO HOME PAGE
 </button>
 
@@ -173,7 +173,7 @@
         <label for="beneficiaryIfsc" class="form-label">Beneficiary IFSC</label>
         <input id="beneficiaryIfsc" name="beneficiaryIfsc" type="text" class="form-control" required>
       </div>
-      <button type="submit" class="btn-primary">ADD BENEFICIARY</button>
+      <button type="submit" class="btn-primary" style="color:white;">ADD BENEFICIARY</button>
     </form>
   </div>
 

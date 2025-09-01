@@ -32,20 +32,20 @@ public class LoginController extends HttpServlet {
 		String password = request.getParameter("password");
 		String role = request.getParameter("role");
 		
-		boolean status = userService.login(userId, password, role);
+		String name = userService.login(userId, password, role);
 		
-		if(status) {
+		if(name != null) {
 			HttpSession session = request.getSession(true);
 			session.setAttribute("userId", userId);
+			session.setAttribute("name", name);
 			if(role.equals("ADMIN")) {
-				response.sendRedirect("AdminDashboard.jsp");
+				response.sendRedirect("AdminDashboardController");
 			}
 			else {
-				response.sendRedirect("CustomerDashboard.jsp");
+				response.sendRedirect("CustomerDashboardController");
 			}
 			return;
 		}
 		response.sendRedirect("Login.jsp");
 	}
-
 }

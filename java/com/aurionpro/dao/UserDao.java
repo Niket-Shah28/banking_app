@@ -5,7 +5,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.sql.Types;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.aurionpro.model.Customer;
 import com.aurionpro.util.DbConnection;
@@ -22,16 +25,16 @@ public class UserDao {
 		return userDao;
 	}
 	
-	public boolean login(int userId, String password, String role) {
+	public String login(int userId, String password, String role) {
 		Connection connection = DbConnection.connect();
-		
+		String name = null;
 		try {
 			PreparedStatement statement = null;
 			if(role.equals("ADMIN")) {
-				statement = connection.prepareStatement("SELECT 1 FROM admin WHERE admin_id = ? AND password = SHA2(?, 256)");
+				statement = connection.prepareStatement("SELECT name FROM admin WHERE admin_id = ? AND password = SHA2(?, 256)");
 			}
 			else {
-				statement = connection.prepareStatement("SELECT 1 FROM customer WHERE customer_id = ? AND password = SHA2(?, 256)");
+				statement = connection.prepareStatement("SELECT name FROM customer WHERE customer_id = ? AND password = SHA2(?, 256)");
 			}
 			
 			statement.setInt(1, userId);
@@ -42,15 +45,13 @@ public class UserDao {
 			ResultSet resultSet = statement.getResultSet();
 			
 			if(resultSet.next()) {
-				if(resultSet.getInt(1) == 1) {
-					return true;
-				}
+				name = resultSet.getString("name");
 			}
 		}
 		catch(SQLException e) {
 			e.printStackTrace();
 		}
-		return false;
+		return name;
 	}
 	
 	public boolean registerCustomer(Customer customer) {
@@ -79,5 +80,34 @@ public class UserDao {
 			e.printStackTrace();
 		}
 		return success;
+	}
+	
+	public List<Customer> getAllCustomerDetails() {
+		Connection connection = DbConnection.connect();
+		List<Customer> customers = new ArrayList<>();
+		try {
+			Statement statement = connection.createStatement();
+			ResultSet resultSet = statement.executeQuery("SELECT name, email, phone, pan_number, "
+													   + "aadhar_number, date_of_birth, address "
+													   + "FROM customer");
+			
+			while(resultSet.next()) {
+				customers.add(
+					new Customer(
+						resultSet.getString("name"),
+						resultSet.getString("email"),
+						resultSet.getString("phone"),
+						resultSet.getString("pan_number"),
+						resultSet.getString("aadhar_number"),
+						resultSet.getDate("date_of_birth"),
+						resultSet.getString("address")
+					)
+				);
+			}
+		}
+		catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return customers;
 	}
 }

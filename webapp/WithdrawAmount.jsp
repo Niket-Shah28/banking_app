@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Make Payment</title>
+<title>Withdraw Amount</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -34,10 +34,10 @@
       align-items: center;
       padding: 28px 16px;
     }
-    
+
     .card-box {
       width: 100%;
-      max-width: 620px;            
+      max-width: 620px;
       padding: 2rem 2.25rem;
       border-radius: 20px;
       box-shadow: 0 10px 30px rgba(0,0,0,0.3);
@@ -46,19 +46,6 @@
       border: 1px solid var(--card-border);
       color: var(--text-color);
       margin-bottom: 24px;
-    }
-
-    .table-box {
-      width: 100%;
-      max-width: 980px;
-      padding: 1.25rem 1.5rem;
-      border-radius: 20px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-      backdrop-filter: blur(10px);
-      background-color: var(--card-bg);
-      border: 1px solid var(--card-border);
-      color: var(--text-color);
-      margin-top: 12px;
     }
 
     .card-header {
@@ -117,76 +104,43 @@
       box-shadow: 0 6px 18px rgba(0,123,255,0.18);
     }
 
-    .table {
-      color: var(--text-color);
-      border-collapse: separate;
-      border-spacing: 0;
-    }
-    .table thead th {
-      border-bottom: 1px solid var(--card-border);
-      color: var(--text-color);
-      font-weight: 600;
-      background: rgba(255,255,255,0.03);
-    }
-    .table tbody td {
-      border-top: 1px solid rgba(255,255,255,0.04);
-    }
-    .no-data {
-      color: var(--secondary-text);
-      text-align: center;
-      padding: 18px 0;
-    }
-
     @media (max-width: 760px) {
-      .table-box { padding: 1rem; max-width: 100%; }
       .card-box { padding: 1.25rem; max-width: 100%; }
     }
 </style>
 </head>
 <body>
-<!-- Back button (same style as your other pages) -->
+
+<!-- Back button -->
 <button class="btn btn-primary mb-3"
         style="display:inline-block; width:auto; padding:0.5rem 1.5rem;"
         onclick="window.location.href='CustomerDashboardController'">
     BACK TO HOME PAGE
 </button>
 
-<!-- Payment form card -->
-<div class="card-box" role="region" aria-label="Make Payment">
-  <div class="card-header">MAKE PAYMENT</div>
+<!-- Withdraw form -->
+<div class="card-box" role="region" aria-label="Withdraw Amount">
+  <div class="card-header">WITHDRAW AMOUNT</div>
+
   <% String message = (String)request.getAttribute("message"); %>
-  		<%if(message != null){ %>
-		<% if (message.equals("SUCCESS")) { %>
-		<div class="alert alert-success alert-dismissible fade show" role="alert"
-		     style="border-radius: 10px; font-weight: 500;">
-		  <%= "PAYMENT COMPLETED SUCCESSFULLY" %>
-		  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-		</div>
-	<% } else { %>
-		<div class="alert alert-danger alert-dismissible fade show" role="alert"
-		     style="border-radius: 10px; font-weight: 500;">
-		  <%= message %>
-		  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-		</div>
-	<%} %>
-	<% } %>
+  <% if (message != null) { %>
+    <% if (message.equals("SUCCESS")) { %>
+      <div class="alert alert-success alert-dismissible fade show" role="alert" style="border-radius: 10px; font-weight: 500;">
+        <%= "WITHDRAWAL SUCCESSFUL" %>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    <% } else { %>
+      <div class="alert alert-danger alert-dismissible fade show" role="alert" style="border-radius: 10px; font-weight: 500;">
+        <%= message %>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    <% } %>
+  <% } %>
 
-  <form action="PaymentController" method="post">
+  <form action="CustomerDepositWithdrawController?action='WITHDRAW'" method="post">
+    <!-- Account Selection -->
     <div class="form-group">
-      <label for="beneficiaryId" class="form-label">Beneficiary</label>
-      <select id="beneficiaryId" name="beneficiaryId" class="form-select" required>
-        <option value="" style="color:black;">-- Select Beneficiary --</option>
-        <c:forEach var="ben" items="${beneficiaries}">
-          <!-- display: beneficiaryAccountNumber - beneficiaryName, value: beneficiaryId -->
-          <option value="${ben.beneficiaryId}" style="color:black;">
-            ${ben.beneficiaryAccountNumber} - ${ben.beneficiaryName}
-          </option>
-        </c:forEach>
-      </select>
-    </div>
-
-    <div class="form-group">
-      <label for="accountId" class="form-label">From Account</label>
+      <label for="accountId" class="form-label">Select Account</label>
       <select id="accountId" name="accountId" class="form-select" required>
         <option value="" style="color:black;">-- Select Account --</option>
         <c:forEach var="acc" items="${accounts}">
@@ -197,27 +151,14 @@
       </select>
     </div>
 
+    <!-- Amount Input -->
     <div class="form-group">
       <label for="amount" class="form-label">Amount</label>
-      <input id="amount" name="amount" type="number" step="0.01" min="1" class="form-control" required>
+      <input id="amount" name="amount" type="number" step="0.01" min="0.01" class="form-control" required placeholder="Enter amount to withdraw">
     </div>
 
-    <div class="form-group">
-      <label for="mode" class="form-label">Mode</label>
-      <select id="mode" name="mode" class="form-select" required>
-        <option value="" style="color:black;">-- Select Mode --</option>
-        <option value="NEFT" style="color:black;">NEFT</option>
-        <option value="RTGS" style="color:black;">RTGS</option>
-        <option value="IMPS" style="color:black;">IMPS</option>
-      </select>
-    </div>
-    
-    <div class ="form-group">
-    	<label for="description" class="form-label">Description</label>
-    	<textarea rows="2" cols="" name="description" class = "form-control"></textarea>
-    </div>
-	<input type = "hidden" name = "transactionType" value="WITHDRAW">
-    <button type="submit" class="btn-primary" style="color:white;">MAKE PAYMENT</button>
+    <input type="hidden" name="transactionType" value="WITHDRAW">
+    <button type="submit" class="btn-primary" style="color:white;">WITHDRAW</button>
   </form>
 </div>
 

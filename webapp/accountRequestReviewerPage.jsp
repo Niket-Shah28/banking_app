@@ -62,14 +62,14 @@
       max-width: 400px;              /* more room per column */
       font-size: 0.95rem;
     }
-    /* Action column flexible */
+    
     .table-custom td:last-child {
       white-space: nowrap;
       overflow: visible;
       text-overflow: unset;
       max-width: none;
     }
-    /* View Profile column flexible */
+
     .table-custom td:nth-last-child(2) {
       white-space: nowrap;
       overflow: visible;
@@ -87,7 +87,7 @@
     .btn-reject { background: #dc3545; color: #fff; }
     .btn-approve:hover { background: #218838; }
     .btn-reject:hover { background: #c82333; }
-    /* Modal card */
+
     .modal-content-custom {
       background: var(--card-bg);
       color: var(--text-color);
@@ -102,7 +102,7 @@
 
 <nav class="navbar navbar-expand-lg navbar-custom fixed-top px-3">
   <a class="navbar-brand fw-semibold" href="#">Account Requests</a>
-  <button class = "ms-auto btn btn-primary" onclick="window.location.href='AdminDashboard.jsp'">BACK TO HOME PAGE</button>
+  <button class = "ms-auto btn btn-primary" onclick="window.location.href='AdminDashboardController'">BACK TO HOME PAGE</button>
 </nav>
 
 <div class="container-fluid" style="padding-top:100px;">

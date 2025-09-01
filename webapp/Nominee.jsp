@@ -144,7 +144,7 @@
 <body>
 <button class="btn btn-primary mb-3"
         style="display:inline-block; width:auto; padding:0.5rem 1.5rem;"
-        onclick="window.location.href='CustomerDashboard.jsp'">
+        onclick="window.location.href='CustomerDashboardController'">
     BACK TO HOME PAGE
 </button>
 
@@ -187,7 +187,7 @@
       </select>
     </div>
 
-    <button type="submit" class="btn-primary">ADD NOMINEE</button>
+    <button type="submit" class="btn-primary" style="color:white;">ADD NOMINEE</button>
   </form>
 </div>
 

@@ -1,5 +1,6 @@
 package com.aurionpro.service;
 
+import java.util.List;
 import java.util.Map;
 
 import com.aurionpro.dao.AccountRequestDao;
@@ -28,5 +29,9 @@ public class AccountRequestService {
 	
 	public void reviewRequest(int requestId, String status) {
 		accountRequestDao.reviewRequest(requestId, status);
+	}
+	
+	public Map<String, List<AccountCreationRequest>> getCustomerAccountCreationRequests(int customerId) {
+		return accountRequestDao.getCustomerAccountCreationRequests(customerId);
 	}
 }

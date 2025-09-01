@@ -48,6 +48,17 @@ public class AccountCreationRequest {
 		this.ifscCode = ifscCode;
 	}
 
+	public AccountCreationRequest(String accountType, double startBalance, String status, Timestamp createdAt,
+			String branchName, String ifscCode) {
+		super();
+		this.accountType = accountType;
+		this.startBalance = startBalance;
+		this.status = status;
+		this.createdAt = createdAt;
+		this.branchName = branchName;
+		this.ifscCode = ifscCode;
+	}
+
 	public int getRequestId() {
 		return requestId;
 	}

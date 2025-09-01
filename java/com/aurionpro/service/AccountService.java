@@ -21,4 +21,12 @@ public class AccountService {
 	public List<Account> getSingleCustomerAccounts(int customerId){
 		return accountDao.getSingleCustomerAccounts(customerId);
 	}
+	
+	public List<String> getCustomerAccountNumbers(int customerId){
+		return accountDao.getCustomerAccountNumbers(customerId);
+	}
+	
+	public List<Account> getallAccounts(){
+		return accountDao.getallAccounts();
+	}
 }

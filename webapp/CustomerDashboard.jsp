@@ -145,8 +145,10 @@
       <li class="nav-item"><a class="nav-link" href="AddBeneficiaryController">ADD BENEFICIARY</a></li>
       <li class="nav-item"><a class="nav-link" href="NomineeController">ADD A NOMINEE</a></li>
       <li class="nav-item"><a class="nav-link" href="PaymentController">PAY</a></li>
-      <li class="nav-item"><a class="nav-link" href="#">VIEW ALL TRANSACTIONS</a></li>
-      <li class="nav-item"><a class="nav-link" href="#">PASSBOOK</a></li>
+      <li class="nav-item"><a class="nav-link" href="CustomerDepositWithdrawController?action=WITHDRAW">WITHDRAW</a></li>
+      <li class="nav-item"><a class="nav-link" href="CustomerDepositWithdrawController?action=DEPOSIT">DEPOSIT</a></li>
+      <li class="nav-item"><a class="nav-link" href="CustomerTransactionController">VIEW ALL TRANSACTIONS</a></li>
+      <li class="nav-item"><a class="nav-link" href="AccountCreationRequestStatusController">ACCOUNT CREATION REQUESTS STATUS</a></li>
     </ul>
   </div>
 </div>
@@ -161,14 +163,14 @@
     </div>
     <div class="col-md-4">
       <div class="card-custom">
-        <h5 class="mb-2">Card 2</h5>
-        <p class="mb-0">Placeholder content. You can tell me what to fill here later.</p>
+        <h5 class="mb-2">BALANCE</h5>
+        <p class="mb-0">Your Total Balance is $ ${totalBalance}</p>
       </div>
     </div>
     <div class="col-md-4">
       <div class="card-custom">
-        <h5 class="mb-2">Card 3</h5>
-        <p class="mb-0">Placeholder content. You can tell me what to fill here later.</p>
+        <h5 class="mb-2">TRANSACTIONS</h5>
+        <p class="mb-0">You have done ${numberOfTransactions} transactions in current month.</p>
       </div>
     </div>
   </div>

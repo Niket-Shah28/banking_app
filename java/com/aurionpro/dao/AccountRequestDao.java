@@ -5,7 +5,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import com.aurionpro.model.AccountCreationRequest;
@@ -98,5 +100,41 @@ public class AccountRequestDao {
 		catch(SQLException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	@SuppressWarnings("serial")
+	public Map<String, List<AccountCreationRequest>> getCustomerAccountCreationRequests(int customerId) {
+		Connection connection = DbConnection.connect();
+		Map<String, List<AccountCreationRequest>> requests = new HashMap<>() {{put("PENDING",new ArrayList<AccountCreationRequest>());put("REVIEWED",new ArrayList<AccountCreationRequest>());}};
+		try {
+			CallableStatement statement = connection.prepareCall("{CALL get_account_creation_requests_of_customer(?)}");
+			statement.setInt(1, customerId);
+			
+			statement.execute();
+			
+			ResultSet resultSet = statement.getResultSet();
+			
+			while(resultSet.next()) {
+				AccountCreationRequest request = new AccountCreationRequest(
+						resultSet.getString("account_type"),
+						resultSet.getDouble("start_balance"),
+						resultSet.getString("status"),
+						resultSet.getTimestamp("created_at"),
+						resultSet.getString("branch_name"),
+						resultSet.getString("ifsc_code")
+					);
+				
+				if(request.getStatus().equals("PENDING")) {
+					requests.get("PENDING").add(request);
+				}
+				else {
+					requests.get("REVIEWED").add(request);
+				}
+			}
+		}
+		catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return requests;
 	}
 }

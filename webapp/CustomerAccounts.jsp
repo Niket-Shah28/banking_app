@@ -128,7 +128,7 @@
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-custom fixed-top px-3">
   <a class="navbar-brand fw-semibold" href="#">ACCOUNTS</a>
-  <button class="ms-auto btn btn-primary w-auto" onclick="window.location.href='CustomerDashboard.jsp'">
+  <button class="ms-auto btn btn-primary w-auto" onclick="window.location.href='CustomerDashboardController'">
     BACK TO HOME PAGE
   </button>
 </nav>

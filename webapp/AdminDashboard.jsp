@@ -26,7 +26,6 @@
       min-height: 100vh;
     }
 
-    /* Top Navbar styled to match glass look */
     .navbar-custom {
       background-color: var(--card-bg);
       backdrop-filter: blur(10px);
@@ -48,7 +47,6 @@
       background: rgba(255,255,255,0.08);
     }
 
-    /* View Profile button styled like your Register page primary button */
     .btn-profile {
       background: var(--primary-blue);
       border: none;
@@ -68,13 +66,11 @@
       transform: translateY(0);
       box-shadow: none;
     }
-    
-    /* Custom style to remove underline */
+
     .btn-profile.text-decoration-none {
         text-decoration: none;
     }
 
-    /* Sidebar (offcanvas) — solid so it's not see-through */
     .offcanvas-custom {
       background-color: #1f2833;
       color: var(--text-color);
@@ -89,7 +85,6 @@
       background: rgba(255,255,255,0.08);
     }
 
-    /* Cards styled like your glass register container */
     .card-custom {
       background-color: var(--card-bg);
       border: 1px solid var(--card-border);
@@ -101,7 +96,6 @@
       height: 100%;
     }
 
-    /* Page spacing and centering for fixed navbar */
     .page-wrap {
       padding: 1.25rem;
       padding-top: 90px;
@@ -140,14 +134,10 @@
   </div>
   <div class="offcanvas-body">
     <ul class="nav flex-column">
-      <li class="nav-item"><a class="nav-link" href="#">HOME</a></li>
       <li class="nav-item"><a class="nav-link" href="AccountRequestReviewController">REVIEW ACCOUNT REQUESTS</a></li>
-      <li class="nav-item"><a class="nav-link" href="#">ACCOUNTS</a></li>
-      <li class="nav-item"><a class="nav-link" href="#">ADD BENEFICIARY</a></li>
-      <li class="nav-item"><a class="nav-link" href="#">ADD A NOMINEE</a></li>
-      <li class="nav-item"><a class="nav-link" href="#">PAY</a></li>
-      <li class="nav-item"><a class="nav-link" href="#">VIEW ALL TRANSACTIONS</a></li>
-      <li class="nav-item"><a class="nav-link" href="#">PASSBOOK</a></li>
+      <li class="nav-item"><a class="nav-link" href="AdminTransactionViewController">VIEW ALL TRANSACTIONS</a></li>
+      <li class="nav-item"><a class="nav-link" href="AdminCustomerDetailsViewController">VIEW CUSTOMERS</a></li>
+      <li class="nav-item"><a class="nav-link" href="AdminAccountsViewController">VIEW ACCOUNTS</a></li>
     </ul>
   </div>
 </div>
@@ -157,19 +147,19 @@
     <div class="col-md-4">
       <div class="card-custom">
         <h5 class="mb-2">ACCOUNTS</h5>
-        <p class="mb-0">You have ${numberOfAccounts} accounts active currently in your bank</p>
+        <p class="mb-0">There are ${numberOfAccounts} accounts currently active.</p>
       </div>
     </div>
     <div class="col-md-4">
       <div class="card-custom">
-        <h5 class="mb-2">Card 2</h5>
-        <p class="mb-0">Placeholder content. You can tell me what to fill here later.</p>
+        <h5 class="mb-2">CUSTOMERS</h5>
+        <p class="mb-0">There are ${numberOfCustomers} customers active currently. </p>
       </div>
     </div>
     <div class="col-md-4">
       <div class="card-custom">
-        <h5 class="mb-2">Card 3</h5>
-        <p class="mb-0">Placeholder content. You can tell me what to fill here later.</p>
+        <h5 class="mb-2">TRANSACTIONS</h5>
+        <p class="mb-0">${numberOfTransactions} transactions were processed in this month till now.</p>
       </div>
     </div>
   </div>
